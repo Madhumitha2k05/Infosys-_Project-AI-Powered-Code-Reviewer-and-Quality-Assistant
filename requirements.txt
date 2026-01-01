@@ -8,3 +8,4 @@ langchain-community
 llama-cpp-python --prefer-binary
 pydocstyle
 radon
+pytest-json-report

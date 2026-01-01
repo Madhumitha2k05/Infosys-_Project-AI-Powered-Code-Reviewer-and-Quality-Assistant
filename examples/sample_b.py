@@ -1,40 +1,57 @@
-# no imports
-# no module docstring
+# sample_b.py
 
 
 def generator_example(n):
-    """generator_example function.
+    """
+    Generate a sequence of numbers up to n.
     
-    Args:
-        n (Any): Description of n.
+    Parameters
+    ----------
+    n : int
+        The upper limit of the sequence.
     
-    Returns:
-        Any: Description of return value.
+    Returns
+    -------
+    None
     
+    Notes
+    -----
+    This function is a placeholder for a more complex operation.
+    It is intended to be used as an example of how to structure
+    a function with a single argument.
+    
+    Examples
+    --------
+    >>> generator_example(n=10)
     """
 
-    # no docstring
     i = 0
-    while True:
-        if i == n:
-            break
+    while i < n:
         yield i
-        i = i + 1
+        i += 1
 
 
-def raises_example(x):
-    """raises_example function.
+def raises_example(x, y):
+    """
+    Raises an example exception.
     
-    Args:
-        x (Any): Description of x.
+    Parameters
+    ----------
+    x : any
+        The first value to be used in the exception.
+    y : any
+        The second value to be used in the exception.
     
-    Returns:
-        Any: Description of return value.
+    Returns
+    -------
+    None
     
+    Raises
+    ------
+    Exception
+        An example exception is raised when this function is called.
     """
 
-    # misleading name, no raise
-    if x < 0:
-        print("bad value")
-    else:
-        return x * 2
+    if y == 0:
+        raise ValueError("division by zero")
+    return x / y

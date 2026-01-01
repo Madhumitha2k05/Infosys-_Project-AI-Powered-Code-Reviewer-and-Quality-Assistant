@@ -499,3 +499,4 @@ elif view == "Metrics":
             st.code(json.dumps([{"name": f.name, "complexity": f.complexity} for f in all_fns], indent=4), language="json")
     else:
         st.info("Run Scan first.")
+
