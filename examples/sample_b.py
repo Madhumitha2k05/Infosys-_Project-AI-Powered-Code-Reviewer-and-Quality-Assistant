@@ -1,14 +1,15 @@
 # sample_b.py
 
 
+
 def generator_example(n):
     """
-    Generate a sequence of numbers up to n.
+    Generate an example generator.
     
     Parameters
     ----------
     n : int
-        The upper limit of the sequence.
+        The input value used to generate the example.
     
     Returns
     -------
@@ -16,13 +17,9 @@ def generator_example(n):
     
     Notes
     -----
-    This function is a placeholder for a more complex operation.
-    It is intended to be used as an example of how to structure
-    a function with a single argument.
-    
-    Examples
-    --------
-    >>> generator_example(n=10)
+    This function serves as an example of a generator function.
+    It does not perform any meaningful computation, but rather
+    demonstrates the basic structure of a generator.
     """
 
     i = 0
@@ -38,9 +35,9 @@ def raises_example(x, y):
     Parameters
     ----------
     x : any
-        The first value to be used in the exception.
+        The first value to raise an exception with.
     y : any
-        The second value to be used in the exception.
+        The second value to raise an exception with.
     
     Returns
     -------
@@ -49,7 +46,7 @@ def raises_example(x, y):
     Raises
     ------
     Exception
-        An example exception is raised when this function is called.
+        An example exception is raised with the values x and y.
     """
 
     if y == 0:

@@ -2,10 +2,21 @@
 
 """Tests for coverage reporter."""
 
+import pytest
+import os
+
+from pathlib import Path
 from core.reporter.coverage_reporter import compute_coverage
 from core.parser.python_parser import parse_path
 
 
+def test_system_check():
+    assert 1 + 1 == 2
+
+def test_core_folder_exists():
+    core_path = Path("core")
+    assert core_path.exists()  is True
+    
 def test_coverage_keys_exist():
     """Test coverage report structure."""
     parsed = parse_path("examples")
