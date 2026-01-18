@@ -4,5 +4,5 @@ def main():
     st.title("My Streamlit App")
     st.write("Hi Students")
     
-    if__name__ == "__main__":
-    main()
+    if __name__ == "__main__":  # <--- Add the space after 'if'
+        main()

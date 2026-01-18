@@ -1,78 +1,62 @@
-# core/docstring_engine/llm_integration.py
+"""
+LLM integration for docstring generation.
 
-import os
-from typing import Optional
-
-from core.parser.python_parser import FunctionInfo
-
-try:
-    from groq import Groq
-except ImportError:
-    Groq = None
-
-
-class LLMDocstringGenerator:
-    """
-    Uses Groq LLM to generate high-quality docstrings
-    based on function signature and structure.
-    """
-
-    def __init__(self, api_key: Optional[str] = None):
-        if Groq is None:
-            raise ImportError("groq package not installed. Run: pip install groq")
-
-        self.client = Groq(
-            api_key=api_key or os.getenv("GROQ_API_KEY")
-        )
-
-    def generate_docstring(
-        self,
-        fn: FunctionInfo,
-        style: str = "Google"
-    ) -> str:
-        """
-        Generate an LLM-powered docstring for a function.
-        """
-
-        args = ", ".join(fn.args) if fn.args else "None"
-        returns = "Returns a value" if fn.returns else "None"
-
-        prompt = f"""
-You are an expert Python developer.
-
-Generate a HIGH-QUALITY {style}-style docstring.
-
-Function name:
-{fn.name}
-
-Arguments:
-{args}
-
-Returns:
-{returns}
-
-Rules:
-- Use proper {style} docstring format
-- Be concise but clear
-- Do NOT include code
-- Do NOT repeat function name unnecessarily
-- Use triple quotes
+- Generates COMPLETE docstring using LLM only
+- No templates
+- No placeholders
 """
 
-        response = self.client.chat.completions.create(
-            model="llama-3.1-8b-instant",
-            messages=[
-                {"role": "system", "content": "You generate Python docstrings."},
-                {"role": "user", "content": prompt},
-            ],
-            temperature=0.3,
-            max_tokens=300,
-        )
+import os
+from dotenv import load_dotenv
+from langchain_groq import ChatGroq
+from langchain_core.messages import HumanMessage
 
-        docstring = response.choices[0].message.content.strip()
+load_dotenv()
 
-        # Safety cleanup
-        if not docstring.startswith('"""'):
-            docstring = f'"""\n{docstring}\n"""'
 
-        return docstring
+def generate_docstring_content(fn: dict) -> str:
+    """
+    Generate a FULL Python docstring using LLM.
+    Returns a string wrapped in triple quotes.
+    """
+
+    api_key = os.getenv("GROQ_API_KEY")
+    if not api_key:
+        raise RuntimeError("GROQ_API_KEY not set")
+
+    llm = ChatGroq(
+        model="llama-3.1-8b-instant",
+        temperature=0.2,
+        api_key=api_key
+    )
+
+    # ✅ SAFE ARG EXTRACTION (THIS FIXES YOUR ERROR)
+    raw_args = fn.get("args", [])
+    arg_names = []
+
+    for a in raw_args:
+        if isinstance(a, dict):
+            arg_names.append(a.get("name"))
+        elif isinstance(a, str):
+            arg_names.append(a)
+
+    prompt = f"""
+Write a complete Python docstring for the following function.
+
+Rules:
+- Follow standard Python docstring conventions
+- Include parameters, returns, and raises ONLY if applicable
+- Do NOT use placeholders like TYPE or DESCRIPTION
+- Do NOT include markdown
+- Return ONLY the docstring wrapped in triple quotes
+- Be concise and professional
+
+Function name: {fn.get("name")}
+Arguments: {arg_names}
+Return type: {fn.get("returns")}
+Raises: {fn.get("raises", [])}
+"""
+
+    response = llm.invoke([HumanMessage(content=prompt)])
+
+    return response.content.strip()
