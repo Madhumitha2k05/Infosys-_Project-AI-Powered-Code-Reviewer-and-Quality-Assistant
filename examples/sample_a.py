@@ -2,6 +2,18 @@
 
 
 def calculate_average(numbers):
+    """
+    Calculates the average of a list of numbers.
+    
+    Parameters:
+        numbers (list): A list of numbers to calculate the average from.
+    
+    Returns:
+        None
+    
+    Raises:
+        None
+    """
     s = 0
     for i in numbers:
         s = s + i
@@ -13,27 +25,22 @@ def add(a, b):
     """
     Adds two numbers together.
     
-    Parameters
-    ----------
-    a : float
-        The first number to add.
-    b : float
-        The second number to add.
+    Parameters:
+        a (float): The first number to add.
+        b (float): The second number to add.
     
-    Returns
-    -------
-    None
+    Returns:
+        None
     
-    Raises
-    ------
-    None
+    Raises:
+        None
     """
     return a + b
 
 
 def process(data):
     """
-    Processes the input data.
+    Process the input data.
     
     Parameters:
         data (list): The input data to be processed.

@@ -24,7 +24,7 @@ from core.reporter.coverage_reporter import compute_coverage, write_report
 # -------------------------------------------------
 # Page config
 # -------------------------------------------------
-st.set_page_config(page_title="AI Code Reviewer", layout="wide")
+st.set_page_config(page_title="Madhumitha's AI Code Reviewer", layout="wide")
 
 # -------------------------------------------------
 # 🎨 "COTTON CANDY SKY" THEME (Blue-Pink Gradient)
@@ -351,7 +351,7 @@ if menu == "🏠 Home":
     """)
 
 # -------------------------------------------------
-# DOCSTRINGS (UPDATED – SAME STRUCTURE)
+# 📘 DOCSTRINGS (UPDATED - SHOWS ALL FUNCTIONS)
 # -------------------------------------------------
 
 elif menu == "📘 Docstrings":
@@ -412,6 +412,8 @@ elif menu == "📘 Docstrings":
                         break
                     
                     docstring = fn.get("docstring", "")
+                    # Simple check: does docstring match current style?
+                    # (You can refine detect_docstring_style logic elsewhere)
                     detected = detect_docstring_style(docstring)
                     
                     if detected != style:
@@ -440,13 +442,23 @@ elif menu == "📘 Docstrings":
                 has_changes = False
 
                 for fn in file_data["functions"]:
-                    # Skip if already has valid docstring in selected style
-                    if is_docstring_complete(fn, style):
-                        continue
+                    # -------------------------------------------------------
+                    # 🔴 LOGIC CHANGED HERE:
+                    # We do NOT skip functions even if they are complete.
+                    # We show EVERYTHING so you can see all functions.
+                    # -------------------------------------------------------
                     
+                    # Check if valid just for display info, but don't 'continue'
+                    is_valid = is_docstring_complete(fn, style)
+                    
+                    # We set has_changes to True so the list renders
                     has_changes = True
                     
                     st.markdown(f"### Function: `{fn['name']}`")
+                    
+                    # Optional: Show a small note if it's already good
+                    if is_valid:
+                        st.caption(f"✅ Already valid {style} style (but you can still change it)")
 
                     # Get before/after
                     existing = fn.get("docstring") or ""
@@ -488,8 +500,9 @@ elif menu == "📘 Docstrings":
                     st.code(generate_diff(before, after), language="diff")
                     st.markdown("---")
                 
-                if not has_changes:
-                    st.success(f"✅ All docstrings are complete and valid in {style.upper()} style!")
+                # Only show this if strictly NO functions existed
+                if not has_changes and len(file_data["functions"]) == 0:
+                    st.info("No functions found in this file.")
 
 # -------------------------------------------------
 # 📊 VALIDATION (QUALITY SCORE CHART - ALWAYS VISIBLE)
@@ -553,7 +566,7 @@ elif menu == "📊 Validation":
         })
 
         # --- 3. FILTER & DISPLAY CHART ---
-        st.subheader("📈 Code Quality Score (100% is Perfect)")
+        
         
         selected_file = st.session_state.get("validation_file")
         

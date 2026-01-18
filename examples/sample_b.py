@@ -4,24 +4,17 @@
 
 def generator_example(n):
     """
-    Generate an example generator.
+    Generates a sequence of numbers from 0 to n-1.
     
-    Parameters
-    ----------
-    n : int
-        The input value used to generate the example.
+    Parameters:
+        n (int): The upper limit of the sequence.
     
-    Returns
-    -------
-    None
+    Returns:
+        None
     
-    Notes
-    -----
-    This function serves as an example of a generator function.
-    It does not perform any meaningful computation, but rather
-    demonstrates the basic structure of a generator.
+    Raises:
+        None
     """
-
     i = 0
     while i < n:
         yield i
@@ -30,25 +23,15 @@ def generator_example(n):
 
 def raises_example(x, y):
     """
-    Raises an example exception.
+    Raises an example exception if the input values are not equal.
     
-    Parameters
-    ----------
-    x : any
-        The first value to raise an exception with.
-    y : any
-        The second value to raise an exception with.
+    Parameters:
+        x (int): The first value to compare.
+        y (int): The second value to compare.
     
-    Returns
-    -------
-    None
-    
-    Raises
-    ------
-    Exception
-        An example exception is raised with the values x and y.
+    Raises:
+        ValueError: If x and y are not equal.
     """
-
     if y == 0:
         raise ValueError("division by zero")
     return x / y
