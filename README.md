@@ -70,9 +70,7 @@ This project implements advanced AI and Software Engineering techniques:
 ## 📂 Project Structure
 
 ```bash
-## 🔹 Project Directory Mapping (Authoritative)
 
-```
 AI_POWERED_CHATBOT/
 │
 ├── ai_powered/
@@ -172,3 +170,4 @@ This project demonstrates:
 
 This project is licensed under the **MIT License**.
 You are free to use, modify, and distribute this software with attribution.
+
