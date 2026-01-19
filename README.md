@@ -70,16 +70,105 @@ This project implements advanced AI and Software Engineering techniques:
 ## 📂 Project Structure
 
 ```bash
-AI-Code-Reviewer/
-├── app.py                 # Main Streamlit Application entry point
-├── requirements.txt       # List of python dependencies
-├── README.md              # Project Documentation
-├── pyproject.toml         # Configuration settings
-├── src/
-│   ├── analyzer.py        # AST parsing logic
-│   ├── generator.py       # AI docstring generation logic
-│   └── validator.py       # PEP-257 compliance checks
-├── storage/
-│   └── review_logs.json   # Local storage for scan results
-└── examples/              # Sample python files for testing
+## 🔹 Project Directory Mapping (Authoritative)
 
+```
+AI_POWERED_CHATBOT/
+│
+├── ai_powered/
+│   ├── cli/
+│   │   └── commands.py
+│   │
+│   ├── core/
+│   │   ├── docstring_engine/
+│   │   │   └── generator.py
+│   │   │   └── llm_integration.py
+│   │   │
+│   │   ├── parser/
+│   │   │   └── python_parser.py
+│   │   │
+│   │   ├── reporter/
+│   │   │   └── coverage_reporter.py
+│   │   │
+│   │   ├── review_engine/
+│   │   │   └── ai_review.py
+│   │   │
+│   │   └── validator/
+│   │       └── validator.py
+│
+├── examples/
+│   ├── sample_a.py
+│   └── sample_b.py
+│
+├── storage/
+│   ├── reports/
+│   └── review_logs.json
+│
+├── tests/
+│   └── test_parser.py
+│
+├── main_app.py        # Streamlit UI
+├── pyproject.toml
+├── requirements.txt
+├── README.md
+```
+```
+-----
+
+
+💻 Installation Steps
+1. Clone the repository
+```bash
+   git clone your_github_link
+  cd AI_Powered_Code_Reviewer
+```
+2. Create and activate virtual environment
+```bash
+python -m venv ai_powered
+ai_powered\Scripts\activate   # Windows
+# source ai_powered/bin/activate  # Mac/Linux
+```
+3. Install dependencies
+```bash
+pip install -r requirements.txt
+```
+▶️ How to Run the Project Locally
+1. Run Streamlit Dashboard
+```bash
+streamlit run main_app.py
+```
+
+**2. Run Code Scan**
+- Enter the project path in the sidebar.
+- Click **Scan**.
+- Review coverage and documentation status.
+
+**3. Generate Docstrings**
+- Select docstring style (Google, NumPy, reST).
+- Preview **AI-generated docstrings**.
+- Click **Accept** or **Reject** changes.
+
+**4. Run Tests**
+- Use the **Run Tests** button in the Dashboard.
+- View real passed/failed results displayed as bar charts.
+
+---
+
+## 🎓 Certification Use Case (Infosys)
+
+This project demonstrates:
+- **Practical use of AI and LLMs** in software engineering.
+- **Real-world application** of NLP and prompt engineering.
+- **Modular system design** and clean architecture.
+- **Testing, validation, and metrics-driven** quality analysis.
+- **Industry-ready Streamlit UI** for visualization.
+- **CI-ready structure** suitable for enterprise workflows.
+
+*It fully satisfies all four milestone requirements defined in the Infosys certification program.*
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License**.
+You are free to use, modify, and distribute this software with attribution.
