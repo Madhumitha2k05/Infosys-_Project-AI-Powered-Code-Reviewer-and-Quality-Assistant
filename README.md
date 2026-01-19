@@ -1,8 +1,8 @@
-#AI-Powered Code Reviewer and Quality Assistant
+###AI-Powered Code Reviewer and Quality Assistant
 
 🧠 AI-Powered Code Reviewer and Quality Assistant
 � � � �
-📌 Project Description
+#📌 Project Description
 The AI-Powered Code Reviewer and Quality Assistant is an intelligent system designed to automatically analyze Python codebases and improve overall code quality.
 It combines static code analysis, Large Language Models (LLMs), and developer-friendly interfaces to assist in reviewing, validating, and enhancing code.
 The tool detects missing or incomplete docstrings, evaluates quality metrics, validates documentation standards, and generates professional docstrings using AI.
@@ -104,3 +104,4 @@ You are free to use, modify, and distribute this software with attribution.
 
 🧩 Milestone-wise Q&A for mentor questions
 Just tell me 😊
+
